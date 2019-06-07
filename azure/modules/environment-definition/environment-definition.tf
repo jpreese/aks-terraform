@@ -22,10 +22,3 @@ module "aks" {
   vm_size               = "Standard_DS3_v2"
   os_disk_size_gb       = "30"
 }
-
-module "aks_service_principal" {
-  source       = "../service-principal"
-  prefix       = "${var.prefix}"
-  env          = "${var.env}"
-  name         = "aks_service_principal"
-}
