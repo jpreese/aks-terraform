@@ -1,5 +1,5 @@
 locals {
-  resource_group_name  = "${var.prefix}-${var.env}-${var.name}"
+  resource_group_name  = "${var.prefix}-${var.env}-${var.name}-resourcegroup"
   resource_group_env   = "${var.prefix}-${var.env}"
 }
 

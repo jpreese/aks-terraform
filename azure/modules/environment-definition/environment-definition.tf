@@ -1,14 +1,6 @@
 # The environment definition module pieces together all of the required resources
 # to build an AKS environment.
 
-module "resource_group" {
-  source                    = "../resource-group"
-  prefix                    = "${var.prefix}"
-  env                       = "${var.env}"
-  location                  = "${var.location}"
-  name                      = "aksresourcegroup"
-}
-
 module "aks" {
   source                = "../aks"
   prefix                = "${var.prefix}"
