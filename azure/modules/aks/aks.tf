@@ -3,13 +3,6 @@ locals {
   aks_environment = "${var.prefix}-${var.env}"
 }
 
-module "aks_service_principal" {
-  source       = "../service-principal"
-  prefix       = "${var.prefix}"
-  env          = "${var.env}"
-  name         = "aks_service_principal"
-}
-
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "${local.aks_name}"
   location            = "${var.location}"

@@ -26,8 +26,4 @@ resource "azuread_service_principal_password" "service_principal_password" {
   lifecycle {
     ignore_changes = ["end_date"]
   }
-
-  provisioner "local-exec" {
-    command = "sleep 120"
-  }
 }
