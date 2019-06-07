@@ -21,7 +21,7 @@ module "aks_service_principal" {
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "${local.aks_name}"
   location            = "${var.location}"
-  resource_group_name = "${var.resource_group_name}"
+  resource_group_name = "${module.aks_resource_group.resource_group_name}"
   dns_prefix          = "${var.dns_prefix}"
 
   agent_pool_profile {
