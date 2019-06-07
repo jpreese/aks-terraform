@@ -19,6 +19,6 @@ module "aks" {
   dns_prefix            = "${var.prefix}"
   agent_count           = "2"
   agent_pool_name       = "kubenode"
-  vm_size               = "Standard_DS3_v2"
+  vm_size               = "Standard_DS4_v2"
   os_disk_size_gb       = "30"
 }
