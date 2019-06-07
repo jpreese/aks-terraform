@@ -70,7 +70,7 @@ resource "azurerm_role_definition" "service_principal_role" {
 }
 
 resource "azurerm_role_assignment" "service_principal_role_assignment" {
-  scope                = "${module.azurerm_resource_group.resource_group.id}"
+  scope                = "${module.resource_group.resource_group.id}"
   role_definition_name = "${azurerm_role_definition.service_principal_role.name}"
   principal_id         = "${azuread_service_principal.service_principal.id}"
 }
