@@ -48,6 +48,11 @@ data "azurerm_subscription" "current" {}
 
 resource "azurerm_role_definition" "aks_role" {
   name        = "aks_role"
+
+  # This GUID was randomly generated
+  # https://github.com/terraform-providers/terraform-provider-azurerm/issues/2069
+  role_definition_id = "388b9d67-d901-4fe5-91e4-5fe9b66100a6"
+
   scope       = "${data.azurerm_subscription.current.id}"
   description = "This role provides the required permissions needed by Kubernetes to: Manager VMs, Routing rules, Mount azure files and Read container repositories"
 
