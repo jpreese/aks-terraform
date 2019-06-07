@@ -1,0 +1,31 @@
+pool: Plex Hosted Ubuntu 1604
+
+steps:
+
+  - task: TerraformInstaller@0
+    displayName: 'Install Terraform 0.12.1'
+    inputs:
+      terraformVersion: '0.12.1'
+
+  - checkout: self
+    displayName: 'Checkout Terraform Config'
+
+  - task: TerraformCLI@0
+    displayName: 'Initialize Terraform'
+    inputs:
+      command: 'init'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/azure/environments/dev'
+
+  - task: TerraformCLI@0
+    displayName: 'Run Terraform Plan'
+    inputs:
+      command: 'plan'
+      environmentServiceName: 'K2 Testing(906851ff-d11b-4064-ae02-155623e21c71)'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/azure/environments/dev'
+
+  - task: TerraformCLI@0
+    displayName: 'Run Terraform Apply'
+    inputs:
+      command: 'apply'
+      environmentServiceName: 'K2 Testing(906851ff-d11b-4064-ae02-155623e21c71)'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/azure/environments/dev'
