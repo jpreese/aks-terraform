@@ -28,6 +28,6 @@ resource "azuread_service_principal_password" "service_principal_password" {
   }
 
   provisioner "local-exec" {
-    command = "sleep 30"
+    command = "sleep 60"
   }
 }
