@@ -15,7 +15,7 @@ resource "random_string" "service_principal_random_password" {
   }
 }
 
-resource "azuread_service_principal_password" "service_principal_password" {
+resource "azuread_service_principal_password" "service_principal" {
   service_principal_id = "${azuread_service_principal.service_principal.id}"
   value                = "${random_string.service_principal_random_password.result}"
 

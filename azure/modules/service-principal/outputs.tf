@@ -8,5 +8,5 @@ output "service_principal_client_id" {
 
 output "service_principal_client_secret" {
   sensitive = true
-  value     = "${random_string.service_principal_random_password.result}"
+  value     = "${azuread_service_principal_password.service_principal.value}"
 }
