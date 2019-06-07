@@ -26,4 +26,9 @@ resource "azuread_service_principal_password" "service_principal" {
   lifecycle {
     ignore_changes = ["end_date"]
   }
+
+  # https://github.com/terraform-providers/terraform-provider-azurerm/issues/3595
+  provisioner "local-exec" {
+    command = "sleep 30"
+  }
 }
