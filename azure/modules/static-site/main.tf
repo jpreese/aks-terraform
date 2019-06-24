@@ -1,6 +1,6 @@
 terraform {
   required_providers {
-    azurerm  = "=1.30.0"
+    azurerm  = ">= 1.28.0"
   }
 }
 
@@ -24,8 +24,9 @@ resource "azurerm_storage_account" "storage" {
 
     tags = "${var.tags}"
 
-    provisioner "local-exec" {
-        command = "az storage blob service-properties update --account-name ${azurerm_storage_account.storage.name} --static-website --index-document index.html --404-document 404.html"
-    }
+    # https://github.com/terraform-providers/terraform-provider-azurerm/issues/1903
+    #provisioner "local-exec" {
+    #    command = "az storage blob service-properties update --account-name ${azurerm_storage_account.storage.name} --static-website --index-document index.html --404-document 404.html"
+    #}
 }
 
