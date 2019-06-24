@@ -19,5 +19,9 @@ module "site" {
 
   name = "mysite"
   location = "eastus"
-  tags = "sometag"
+
+  tags = {
+    sometag    = "sometagvalue"
+    anothertag = "anothertagvalue"
+  }
 }
