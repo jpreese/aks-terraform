@@ -13,3 +13,11 @@ module "aks" {
   vm_size               = "Standard_DS2_v2"
   os_disk_size_gb       = "30"
 }
+
+module "site" {
+  source = "../static-site"
+
+  name = "mysite"
+  location = "eastus"
+  tags = "sometag"
+}
