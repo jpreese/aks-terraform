@@ -22,10 +22,6 @@ provider "azuread" {
 
 module "dev_subscription" {
   source   = "../../modules/subscription"
-
-  prefix   = "${var.prefix}"
-  env      = "${var.env}"
-  location = "${var.location}"
 }
 
 module "aks_least_principal" {
