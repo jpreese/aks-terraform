@@ -28,6 +28,8 @@ module "aks_least_principal" {
   agents_size           = "Standard_DS2_v2"
   agents_disk_size      = "30"
 
+  address_space         = ["10.201.128.0/24"]
+
   tags = {
     Terraform = "true"
   }
