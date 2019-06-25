@@ -11,7 +11,7 @@ resource "azurerm_resource_group" "aks" {
 }
 
 resource "azurerm_kubernetes_cluster" "aks" {
-  name                = "${var.cluster_name}"
+  name                = "${local.cluster_name}"
   location            = "${var.location}"
   resource_group_name = "${azurerm_resource_group.aks.name}"
   dns_prefix          = "${var.prefix}"

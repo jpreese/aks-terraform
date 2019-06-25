@@ -4,8 +4,8 @@ variable "prefix" {
 }
 
 variable "location" {
-  default     = "eastus"
   description = "The location for the AKS deployment"
+  default     = "eastus"
 }
 
 variable "service_principal_name" {
@@ -19,11 +19,16 @@ variable "agents_count" {
 }
 
 variable "agents_size" {
-  default     = "Standard_DS2_v2"
   description = "The default virtual machine size for the Kubernetes agents"
+  default     = "Standard_DS2_v2"
 }
 
 variable "agents_disk_size" {
-  default     = "30"
   description = "The default disk size for the virtual machine running the Kubernetes agents"
+  default     = "30"
+}
+
+variable "tags" {
+  description = "The tags to be associated with the AKS resources"
+  default     = {}
 }
