@@ -24,7 +24,7 @@ module "aks_least_principal" {
   location              = "eastus"
   prefix                = "dev"
 
-  agents_count          = "2"
+  agents_count          = "1"
   agents_size           = "Standard_DS2_v2"
   agents_disk_size      = "30"
 

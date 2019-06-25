@@ -15,7 +15,7 @@ variable "service_principal_name" {
 
 variable "agents_count" {
   description = "The number of Agents that should exist in the Agent Pool"
-  default     = 2
+  default     = 1
 }
 
 variable "agents_size" {
