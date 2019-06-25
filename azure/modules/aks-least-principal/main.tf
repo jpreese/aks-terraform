@@ -59,7 +59,13 @@ resource "azuread_service_principal_password" "aks" {
   }
 }
 
+variable "AzureRoleDefinitionId" {
+    type    = "string"
+    default = "3f0f0bc9-5bf9-463a-95a6-e5920bcc66a1"
+}
+
 resource "azurerm_role_definition" "aks" {
+  role_definition_id = "${var.AzureRoleDefinitionId}"
   name        = "aks_service_principal_role"
   scope       = "${data.azurerm_subscription.current.id}"
   description = "This role provides the required permissions needed to manage AKS"
