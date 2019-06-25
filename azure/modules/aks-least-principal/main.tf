@@ -22,12 +22,6 @@ resource "azurerm_virtual_network" "aks" {
   address_space       = "${var.address_space}"
 }
 
-data "azurerm_subnet" "aks" {
-  name = "${azurerm_subnet.aks.name}"
-  virtual_network_name = "${azurerm_subnet.aks.virtual_network_name}"
-  resource_group_name = "${azurerm_subnet.aks.resource_group_name}"
-}
-
 resource "azurerm_subnet" "aks" {
   name                      = "${local.cluster_name}-subnet"
   resource_group_name       = "${azurerm_resource_group.aks.name}"
@@ -131,7 +125,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     vm_size         = "${var.agents_size}"
     os_type         = "Linux"
     os_disk_size_gb = "${var.agents_disk_size}"
-    vnet_subnet_id  = "${data.azurerm_subnet.aks.subnet_id}"
+    vnet_subnet_id  = "${azurerm_subnet.aks.id}"
   }
 
   service_principal {
