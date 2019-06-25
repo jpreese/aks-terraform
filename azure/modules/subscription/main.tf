@@ -5,7 +5,7 @@ data "azurerm_role_definition" "owner" {
 }
 
 resource "azuread_group" "owners" {
-    name = "${data.azurerm_subscription.primary.display_name} - Owners"
+    name = "${data.azurerm_subscription.current.display_name} - Owners"
 }
 
 resource "azurerm_role_assignment" "owners" {

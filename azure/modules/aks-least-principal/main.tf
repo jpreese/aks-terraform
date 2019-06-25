@@ -104,5 +104,5 @@ data "azurerm_resource_group" "agents" {
 resource "azurerm_role_assignment" "aks" {
   scope                = "${data.azurerm_resource_group.agents.id}"
   role_definition_name = "${azurerm_role_definition.aks.name}"
-  principal_id         = "${azurerm_azuread_service_principal.aks.id}"
+  principal_id         = "${azuread_service_principal.aks.id}"
 }
