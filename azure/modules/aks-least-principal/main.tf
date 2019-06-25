@@ -50,7 +50,7 @@ resource "azurerm_network_security_group" "aks" {
 }
 
 module "aks_security_group_rules" {
-  source = "../modules/aks-security-group-rules"
+  source = "./modules/aks-security-group-rules"
 
   resource_group_name = "${azurerm_resource_group.aks.name}"
   network_security_group_name = "${azurerm_network_security_group.aks.name}"
@@ -89,7 +89,7 @@ resource "azuread_service_principal_password" "aks" {
 }
 
 module "aks_security_principal_role" {
-  source = "../modules/aks-security-principal-role"
+  source = "./modules/aks-security-principal-role"
 
   name  = "AKS Manager"
   scope = "${data.azurerm_subscription.current}"
