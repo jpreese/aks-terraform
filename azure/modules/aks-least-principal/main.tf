@@ -61,44 +61,23 @@ module "aks_security_group_rules" {
 # CREATE A SERVICE PRINCIPAL WITH LEAST PRIVILEGE
 # ---------------------------------------------------------------------------------------------------------------------
 
-resource "azuread_application" "aks" {
-  name = "${var.service_principal_name}"
-}
+module "service_principal" {
+  source = "../service-principal"
 
-resource "azuread_service_principal" "aks" {
-  application_id = "${azuread_application.aks.application_id}"
-}
-
-resource "random_string" "aks" {
-  length  = 16
-  special = true
-
-  keepers = {
-    service_principal = "${azuread_service_principal.aks.id}"
-  }
-}
-
-resource "azuread_service_principal_password" "aks" {
-  service_principal_id = "${azuread_service_principal.aks.id}"
-  value                = "${random_string.aks.result}"
-  end_date             = "${timeadd(timestamp(), "8760h")}"
-
-  lifecycle {
-    ignore_changes = ["end_date"]
-  }
+  name = "AKS Service Principal"
 }
 
 module "aks_security_principal_role" {
   source = "./modules/aks-security-principal-role"
 
   name  = "AKS Manager"
-  scope = "${data.azurerm_subscription.current}"
+  scope = "${data.azurerm_subscription.current.id}"
 }
 
 resource "azurerm_role_assignment" "aks" {
   scope                = "${data.azurerm_resource_group.agents.id}"
   role_definition_name = "${module.aks_security_principal_role.name}"
-  principal_id         = "${azuread_service_principal.aks.id}"
+  principal_id         = "${module.service_principal.id}"
 }
 
 data "azurerm_resource_group" "agents" {
