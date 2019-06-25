@@ -22,3 +22,8 @@ variable "agents_size" {
   default     = "Standard_DS2_v2"
   description = "The default virtual machine size for the Kubernetes agents"
 }
+
+variable "agents_disk_size" {
+  default     = "30"
+  description = "The default disk size for the virtual machine running the Kubernetes agents"
+}

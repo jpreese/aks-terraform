@@ -30,6 +30,6 @@ module "aks_least_principal" {
   prefix                = "${var.env}"
 
   agents_count          = "2"
-  vm_size               = "Standard_DS2_v2"
-  os_disk_size_gb       = "30"
+  agents_size           = "Standard_DS2_v2"
+  agents_disk_size      = "30"
 }

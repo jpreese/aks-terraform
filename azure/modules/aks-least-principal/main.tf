@@ -21,7 +21,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     count           = "${var.agents_count}"
     vm_size         = "${var.agents_size}"
     os_type         = "Linux"
-    os_disk_size_gb = 50
+    os_disk_size_gb = "${var.agents_disk_size}"
   }
 
   service_principal {
