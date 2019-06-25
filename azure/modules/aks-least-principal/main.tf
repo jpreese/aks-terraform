@@ -76,7 +76,6 @@ resource "azurerm_role_definition" "aks" {
       "Microsoft.Network/routeTables/routes/read",
       "Microsoft.Network/routeTables/routes/write",
       "Microsoft.Network/routeTables/routes/delete",
-      "Microsoft.Storage/storageAccounts/fileServices/fileShare/read",
       "Microsoft.ContainerRegistry/registries/read",
       "Microsoft.Network/publicIPAddresses/read",
       "Microsoft.Network/publicIPAddresses/write",
