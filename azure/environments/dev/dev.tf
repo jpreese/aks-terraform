@@ -1,8 +1,3 @@
-locals {
-  location = "eastus"
-  env      = "dev"
-}
-
 terraform {
   required_version = "~> 0.12.0"
 }
@@ -26,8 +21,8 @@ module "dev_subscription" {
 module "aks_least_principal" {
   source                = "../../modules/aks-least-principal"
 
-  location              = "${var.location}"
-  prefix                = "${var.env}"
+  location              = "eastus"
+  prefix                = "dev"
 
   agents_count          = "2"
   agents_size           = "Standard_DS2_v2"

@@ -25,19 +25,19 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 
   service_principal {
-    client_id     = "${azurerm_azuread_service_principal.aks.application_id}"
-    client_secret = "${azurerm_azuread_service_principal_password.aks.value}"
+    client_id     = "${azuread_service_principal.aks.application_id}"
+    client_secret = "${azuread_service_principal_password.aks.value}"
   }
 
   tags = "${var.tags}"
 }
 
-resource "azurerm_azuread_application" "aks" {
+resource "azuread_application" "aks" {
   name = "${var.service_principal_name}"
 }
 
-resource "azurerm_azuread_service_principal" "aks" {
-  application_id = "${azurerm_azuread_application.aks.application_id}"
+resource "azuread_service_principal" "aks" {
+  application_id = "${azuread_application.aks.application_id}"
 }
 
 resource "random_string" "aks" {
@@ -45,13 +45,13 @@ resource "random_string" "aks" {
   special = true
 
   keepers = {
-    service_principal = "${azurerm_azuread_service_principal.aks.id}"
+    service_principal = "${azuread_service_principal.aks.id}"
   }
 }
 
-resource "azurerm_azuread_service_principal_password" "aks" {
-  service_principal_id = "${azurerm_azuread_service_principal.aks.id}"
-  value                = "${random_string.aks_lp.result}"
+resource "azuread_service_principal_password" "aks" {
+  service_principal_id = "${azuread_service_principal.aks.id}"
+  value                = "${random_string.aks.result}"
   end_date             = "${timeadd(timestamp(), "8760h")}"
 
   lifecycle {
