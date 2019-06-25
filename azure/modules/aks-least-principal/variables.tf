@@ -30,12 +30,12 @@ variable "agents_disk_size" {
 
 variable "address_space" {
   description = "Specifies the address space for the virtual network"
-  default = ["10.1.0.0/16"]
+  default     = ["10.1.0.0/16"]
 }
 
 variable "address_prefix" {
   description = "Specifies the address prefix for the subnet"
-  default = "10.1.0.0/24"
+  default     = "10.1.0.0/24"
 }
 
 variable "tags" {

@@ -1,19 +1,5 @@
-resource "azurerm_network_security_rule" "inbound-1000" {
-  name                         = "Allow-Default-Subnet-Inbound"
-  resource_group_name         = "${var.resource_group_name}"
-  network_security_group_name = "${var.network_security_group_name}"
-  priority                     = 1000
-  direction                    = "Inbound"
-  access                       = "Allow"
-  protocol                     = "*"
-  source_address_prefix        = "${var.address_prefix}"
-  source_port_range            = "*"
-  destination_address_prefix   = "${var.address_prefix}"
-  destination_port_range       = "*"
-}
-
 resource "azurerm_network_security_rule" "inbound-1100" {
-  name                        = "Allow-GlobalProtect-Inbound"
+  name                        = "Allow-Internal-Inbound"
   resource_group_name         = "${var.resource_group_name}"
   network_security_group_name = "${var.network_security_group_name}"
   priority                    = 1100

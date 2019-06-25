@@ -22,6 +22,12 @@ resource "azurerm_virtual_network" "aks" {
   address_space       = "${var.address_space}"
 }
 
+data "azurerm_subnet" "aks" {
+  name = "${azurerm_subnet.aks.name}"
+  virtual_network_name = "${azurerm_subnet.aks.virtual_network_name}"
+  resource_group_name = "${azurerm_subnet.aks.resource_group_name}"
+}
+
 resource "azurerm_subnet" "aks" {
   name                      = "${local.cluster_name}-subnet"
   resource_group_name       = "${azurerm_resource_group.aks.name}"
@@ -30,7 +36,7 @@ resource "azurerm_subnet" "aks" {
 
   # This field will be deprecated soon, but is required for now or the NSG assocation gets removed.
   # https://github.com/terraform-providers/terraform-provider-azurerm/issues/2178
-  network_security_group_id = "${azurerm_network_security_group.nsg.id}"
+  network_security_group_id = "${azurerm_network_security_group.aks.id}"
 
   # Ignore changes to route_table_id because if you make an association elsewhere this tries to clear it.
   # https://www.terraform.io/docs/providers/azurerm/r/subnet.html#route_table_id
@@ -113,8 +119,6 @@ data "azurerm_resource_group" "agents" {
 # CREATE THE AKS CLUSTER USING THE SERVICE PRINCIPAL
 # ---------------------------------------------------------------------------------------------------------------------
 
-data "azurerm_subnet" "aks" { }
-
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "${local.cluster_name}"
   location            = "${var.location}"
@@ -127,7 +131,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     vm_size         = "${var.agents_size}"
     os_type         = "Linux"
     os_disk_size_gb = "${var.agents_disk_size}"
-    vnet_subnet_id  = "${data.azurerm_subnet.aks.id}"
+    vnet_subnet_id  = "${data.azurerm_subnet.aks.subnet_id}"
   }
 
   service_principal {
