@@ -59,10 +59,8 @@ resource "azuread_service_principal_password" "aks" {
   }
 }
 
-resource "random_uuid" "aks" { }
-
 resource "azurerm_role_definition" "aks" {
-  role_definition_id = "${random_uuid.aks.result}"
+  role_definition_id = "62b20e1a-7594-42c5-b78e-ce126eac4ae9"
   name               = "aks_service_principal_role"
   scope              = "${data.azurerm_subscription.current.id}"
   description        = "This role provides the required permissions needed to manage AKS"
