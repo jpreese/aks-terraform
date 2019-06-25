@@ -1,7 +1,6 @@
 locals {
-  prefix = "proto"
-  env = "dev"
   location = "eastus"
+  env      = "dev"
 }
 
 terraform {
@@ -27,13 +26,10 @@ module "dev_subscription" {
 module "aks_least_principal" {
   source                = "../../modules/aks-least-principal"
 
-  prefix                = "${var.prefix}"
-  env                   = "${var.env}"
   location              = "${var.location}"
-  cluster_name          = "akscluster"
-  dns_prefix            = "${var.prefix}"
-  agent_count           = "2"
-  agent_pool_name       = "kubenode"
+  prefix                = "${var.env}"
+
+  agents_count          = "2"
   vm_size               = "Standard_DS2_v2"
   os_disk_size_gb       = "30"
 }
