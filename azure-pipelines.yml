@@ -16,7 +16,7 @@ steps:
   displayName: 'Run Extension'
 
 - script: |
-    echo new thing. again.
+    echo new thing. again. !
     echo $(servicePrincipalID)
     echo $(SERVICEPRINCIPALID)
     echo $servicePrincipalIdVAR
