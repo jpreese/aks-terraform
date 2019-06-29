@@ -18,6 +18,8 @@ steps:
     echo new thing. again.
     echo $(servicePrincipalID)
     echo $(SERVICEPRINCIPALID)
+    echo $servicePrincipalIdVAR
+    echo $(servicePrincipalIdVAR)
     echo $servicePrincipalId
     echo $SERVICEPRINCIPALID
     echo I called it up above. Good luck.
