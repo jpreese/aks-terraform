@@ -15,6 +15,7 @@ steps:
     azureSubscription: 'Sandbox'
 
 - script: |
-    echo $(servicePrincipalId)
+    echo $servicePrincipalId
+    echo $SERVICEPRINCIPALID
     echo I called it up above. Good luck.
   displayName: 'Run a multi-line script'
