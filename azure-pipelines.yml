@@ -13,6 +13,7 @@ steps:
 - task: Get Service Principal@0
   inputs:
     azureSubscription: 'Sandbox'
+  displayName: 'Run Extension'
 
 - script: |
     echo new thing. again.
