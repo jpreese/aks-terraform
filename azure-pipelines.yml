@@ -11,6 +11,8 @@ pool:
 steps:
 
 - task: Get Service Principal@0
+  inputs:
+    azureSubscription: 'Sandbox'
 
 - script: |
     echo $(servicePrincipalId)
