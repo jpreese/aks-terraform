@@ -11,7 +11,8 @@ pool:
 steps:
 
 - task: Get Service Principal@0
-  displayName: 'Run Extension'
+  inputs:
+    environmentServiceName: 'Sandbox'
 
 - script: |
     echo new thing. again. !
